@@ -119,26 +119,37 @@ const App = () => {
 
   const handleDownload = () => {
     const input = document.getElementById("card");
+    const margin = 20;
+    const topMargin = 20;
     html2canvas(input, { scale: 2 }).then((canvas) => {
       const imgData = canvas.toDataURL("image/png");
       const pdf = new jsPDF("p", "mm", "a4");
-      const imgWidth = 210;
+      const imgWidth = 210 - 2 * margin;
       const pageHeight = 297;
       const imgHeight = (canvas.height * imgWidth) / canvas.width;
       const frontImg = new Image();
       frontImg.src = vcfront;
       frontImg.onload = () => {
         const frontImgHeight = (frontImg.height * imgWidth) / frontImg.width;
-        const margin = 50; // margin between vcfront and the card
-        pdf.addImage(frontImg, "PNG", 0, 0, imgWidth, frontImgHeight);
-        let position = frontImgHeight + margin;
-        pdf.addImage(imgData, "PNG", 0, position, imgWidth, imgHeight);
+        // const margin = 50; // margin between vcfront and the card
+
+        let position = frontImgHeight + margin + topMargin;
+        pdf.addImage(
+          frontImg,
+          "PNG",
+          margin,
+          topMargin,
+          imgWidth,
+          frontImgHeight
+        );
+        pdf.addImage(imgData, "PNG", margin, position, imgWidth, imgHeight);
         let heightLeft = imgHeight - pageHeight + position;
 
         while (heightLeft >= 0) {
-          position = heightLeft - imgHeight + frontImgHeight + margin;
+          position =
+            heightLeft - imgHeight + frontImgHeight + margin + topMargin;
           pdf.addPage();
-          pdf.addImage(imgData, "PNG", 0, position, imgWidth, imgHeight);
+          pdf.addImage(imgData, "PNG", margin, position, imgWidth, imgHeight);
           heightLeft -= pageHeight;
         }
 
