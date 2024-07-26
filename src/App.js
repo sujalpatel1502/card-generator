@@ -7,6 +7,7 @@ import Location from "./Location.svg";
 import Call from "./Call.svg";
 import Bottom from "./idcardbot.svg";
 import vcfront from "./VC2.png";
+import developed from "./DevelopedBy.png";
 
 const App = () => {
   const [formData, setFormData] = useState({
@@ -70,13 +71,20 @@ const App = () => {
     flexDirection: "column",
     alignItems: "center",
     marginBottom: "20px",
+    padding: "20px",
+    backgroundColor: "#fff",
+    borderRadius: "8px",
+    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+    width: "38%",
   };
 
   const labelStyle = {
     marginBottom: "10px",
     display: "flex",
     flexDirection: "column",
-    alignItems: "center",
+    alignItems: "flex-start",
+    width: "100%",
+    maxWidth: "400px",
   };
 
   const inputStyle = {
@@ -84,7 +92,9 @@ const App = () => {
     borderRadius: "4px",
     border: "1px solid #eaeaea",
     marginBottom: "10px",
-    width: "200px",
+    width: "100%",
+    boxSizing: "border-box",
+    fontSize: "16px",
   };
 
   const textAreaStyle = {
@@ -92,8 +102,10 @@ const App = () => {
     borderRadius: "4px",
     border: "1px solid #eaeaea",
     marginBottom: "10px",
-    width: "400px",
+    width: "100%",
     height: "150px",
+    boxSizing: "border-box",
+    fontSize: "16px",
   };
 
   const buttonStyle = {
@@ -103,6 +115,7 @@ const App = () => {
     border: "none",
     borderRadius: "4px",
     cursor: "pointer",
+    fontSize: "16px",
   };
 
   const handleChange = (e) => {
@@ -131,7 +144,6 @@ const App = () => {
       frontImg.src = vcfront;
       frontImg.onload = () => {
         const frontImgHeight = (frontImg.height * imgWidth) / frontImg.width;
-        // const margin = 50; // margin between vcfront and the card
 
         let position = frontImgHeight + margin + topMargin;
         pdf.addImage(
@@ -297,6 +309,18 @@ const App = () => {
       <button onClick={handleDownload} style={buttonStyle}>
         Download PDF
       </button>
+      <div
+        style={{
+          height: "20%",
+          width: "100%",
+          marginRight: "10px",
+          marginTop: "30px",
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
+        <img src={developed} style={{}} alt="Developed By Icon" />
+      </div>
     </div>
   );
 };
