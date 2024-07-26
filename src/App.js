@@ -27,6 +27,7 @@ const App = () => {
     borderRadius: "8px",
     boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
     paddingTop: "25px",
+    position: "relative",
   };
 
   const nameStyle = {
@@ -214,9 +215,9 @@ const App = () => {
             style={textAreaStyle}
           />
         </div>
-        <button type="submit" style={buttonStyle}>
+        {/*<button type="submit" style={buttonStyle}>
           Submit
-        </button>
+        </button>*/}
       </form>
       <div id="card" style={cardStyle}>
         <div style={nameStyle}>{formData.name}</div>
@@ -269,14 +270,18 @@ const App = () => {
           />
           <span style={textStyle}>{formData.address}</span>
         </div>
-        <img
-          src={Bottom}
+        <div
           style={{
-            height: "20%",
+            // position: "absolute",
+            top: 10,
+            bottom: 0,
+            backgroundColor: "#172b4e",
+            height: 40,
             width: "100%",
+            borderBottomLeftRadius: 6,
+            borderBottomRightRadius: 6,
           }}
-          alt="Bottom Icon"
-        />
+        ></div>
       </div>
       <button onClick={handleDownload} style={buttonStyle}>
         Download PDF
